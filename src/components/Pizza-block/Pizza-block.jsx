@@ -20,10 +20,10 @@ const PizzaBlock = ({name, price, imageUrl, sizes, types}) => {
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((e, i) =>  <li onClick={() => setPizzaType(i)} className={pizzaType === i ? "active" : ''}>{pizzaCategory[e]}</li>)}
+          {types.map((e, i) =>  <li key={i} onClick={() => setPizzaType(i)} className={pizzaType === i ? "active" : ''}>{pizzaCategory[e]}</li>)}
         </ul>
         <ul>
-          {sizes.map((s, i) => <li onClick={() => setPizzaSize(i)} className={pizzaSize === i ? "active" : ''}>{s} см.</li>)}
+          {sizes.map((s, i) => <li key={i} onClick={() => setPizzaSize(i)} className={pizzaSize === i ? "active" : ''}>{s} см.</li>)}
         </ul>
       </div>
       <div className="pizza-block__bottom">

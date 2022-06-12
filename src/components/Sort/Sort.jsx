@@ -1,4 +1,15 @@
+import { useState } from "react";
+
 const Sort = (props) => {
+  const [tumblerSort, setTumblerSort] = useState(false);
+  const [sortNumber, setSortNumber] = useState(0);
+  const sorts = ['популярности', 'цене', 'алфавиту'];
+  let nameSort = sorts[sortNumber]
+  const onChoiceSort = (index) => {
+    setSortNumber(index);
+    setTumblerSort(false);
+  }
+
   return (
     <div className="sort">
       <div className="sort__label">
@@ -15,15 +26,17 @@ const Sort = (props) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => setTumblerSort(!tumblerSort)}>{nameSort}</span>
       </div>
-      <div className="sort__popup">
+      {tumblerSort && <div className="sort__popup">
         <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
+          {sorts.map((e, i) => <li key={i} onClick={() => onChoiceSort(i)} className={sortNumber === i ? "active" : ''} >{e}</li>)}
+          {/* <li onClick={() => choiceSort(0)} className={sortNumber === 0 ? "active" : ''} >популярности</li>
+          <li onClick={() => setSortNumber(1)} className={sortNumber === 1 ? "active" : ''} >цене</li>
+          <li onClick={() => setSortNumber(2)} className={sortNumber === 2 ? "active" : ''} >алфавиту</li> */}
         </ul>
-      </div>
+      </div>}
+
     </div>
   )
 };
