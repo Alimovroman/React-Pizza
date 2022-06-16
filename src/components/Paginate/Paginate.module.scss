@@ -1,0 +1,26 @@
+.root{
+  li {
+    display: inline-block;
+    border: 1px solid #fe5f1e;;
+    border-radius: 30px;
+    width: 25px;
+    margin-left: 5px;
+    text-align: center;
+
+
+
+  }
+  a{
+    cursor: pointer;
+    color: #fe5f1e;
+  }
+
+  :global {
+    .selected {
+      background-color: #fe5f1e;
+      a {
+        color: white;
+      } 
+    }
+  }
+}

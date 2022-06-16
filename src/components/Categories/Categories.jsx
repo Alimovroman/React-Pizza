@@ -1,10 +1,10 @@
-import { useState } from "react";
 
-const Categories = (props) => {
-  const [activeCategory, setActiveCategory] = useState(0);
+
+const Categories = ({onCategoryClick, activeCategory}) => {
+ 
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
   const onActiveCategories = (num) => {
-    setActiveCategory(num)
+    onCategoryClick(num)
   }
   return (
     <div className="categories">

@@ -1,0 +1,30 @@
+.root {
+  margin-right: 290px;
+
+  img {
+    width: 23px;
+    position: absolute;
+    opacity: 0.5;
+  }
+
+  .delete {
+    opacity: 0.5;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .input {
+    padding-left: 25px;
+    width: 250px;
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+
+  // .input:focus {
+  //   width: 350px;
+  // }
+}

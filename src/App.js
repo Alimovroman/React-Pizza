@@ -1,36 +1,28 @@
-import { useEffect, useState } from 'react';
-import Categories from './components/Categories/Categories';
+
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
-import PizzaBlock from './components/Pizza-block/Pizza-block';
-import Sort from './components/Sort/Sort';
+import Cart from './components/Pages/Cart/Cart';
+import NotFound from './components/Pages/NotFound/NotFound';
+import PizzaBlockContainer from './components/Pages/Pizza-block/PizzaBlockContainer';
 import './scss/app.scss';
 
-function App() {
-  const [pizzas, setPizzas] = useState([]);
-  useEffect(() => {
-    fetch('https://62a5c5ab430ba53411cc40f9.mockapi.io/items')
-      .then(response => response.json())
-      .then(response => setPizzas(response))
-  },[])
+export const SearchContext = React.createContext();
 
+function App() {
+  const [searchValue, setSearchValue] = useState('')
   return (
     <div className="wrapper">
-      <Header />
-      <div className="content">
-        <div className="container">
-          <div className="content__top">
-            <Categories />
-            <Sort />
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-            {pizzas.map(obj => {
-              return <PizzaBlock key={obj.id} {...obj} />
-            })}
-
-          </div>
+      <SearchContext.Provider value={{searchValue, setSearchValue}}>
+        <Header/>
+        <div className="content">
+          <Routes>
+            <Route path='/' element={<PizzaBlockContainer />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
         </div>
-      </div>
+      </SearchContext.Provider>
     </div>
   );
 }

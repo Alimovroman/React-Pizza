@@ -1,14 +1,17 @@
 import { useState } from "react";
 
-const Sort = (props) => {
+
+const Sort = ({onSortClick, sortNumber}) => {
   const [tumblerSort, setTumblerSort] = useState(false);
-  const [sortNumber, setSortNumber] = useState(0);
   const sorts = ['популярности', 'цене', 'алфавиту'];
-  let nameSort = sorts[sortNumber]
+  let nameSort = sorts[sortNumber];
+
   const onChoiceSort = (index) => {
-    setSortNumber(index);
+    //setSortNumber(index);
     setTumblerSort(false);
+    onSortClick(index)
   }
+
 
   return (
     <div className="sort">
@@ -31,9 +34,6 @@ const Sort = (props) => {
       {tumblerSort && <div className="sort__popup">
         <ul>
           {sorts.map((e, i) => <li key={i} onClick={() => onChoiceSort(i)} className={sortNumber === i ? "active" : ''} >{e}</li>)}
-          {/* <li onClick={() => choiceSort(0)} className={sortNumber === 0 ? "active" : ''} >популярности</li>
-          <li onClick={() => setSortNumber(1)} className={sortNumber === 1 ? "active" : ''} >цене</li>
-          <li onClick={() => setSortNumber(2)} className={sortNumber === 2 ? "active" : ''} >алфавиту</li> */}
         </ul>
       </div>}
 
