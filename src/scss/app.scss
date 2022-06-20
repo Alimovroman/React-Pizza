@@ -38,30 +38,26 @@ body {
   &__items {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 0px 15px;
     grid-template-areas:
-      ". . . ."
       ". . . .";
 
     @media (max-width: 1450px) {
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-areas:
-        ". . ."
         ". . .";
     }
 
     @media (max-width: 1200px) {
       grid-template-columns: 1fr 1fr;
       grid-template-areas:
-        ". ."
         ". .";
     }
 
     @media (max-width: 800px) {
       grid-template-columns: 1fr;
       grid-template-areas:
-        "."
         ".";
     }
 

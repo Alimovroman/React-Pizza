@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux";
+import { changeCategory } from "../../state/pizzaBlock-reducer";
 
-
-const Categories = ({onCategoryClick, activeCategory}) => {
- 
+const Categories = ({ activeCategory }) => {
+  const dispatch = useDispatch();
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
   const onActiveCategories = (num) => {
-    onCategoryClick(num)
+    //alert(num)
+    //onCategoryClick(num)
+    dispatch(changeCategory(num))
   }
   return (
     <div className="categories">

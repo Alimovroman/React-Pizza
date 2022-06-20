@@ -1,15 +1,20 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeParamSort } from "../../state/pizzaBlock-reducer";
 
 
-const Sort = ({onSortClick, sortNumber}) => {
+const Sort = ({sortNumber}) => {
   const [tumblerSort, setTumblerSort] = useState(false);
-  const sorts = ['популярности', 'цене', 'алфавиту'];
+  const dispatch = useDispatch();
+  //const sorts = ['популярности', 'цене', 'алфавиту'];
+  const sorts = ['популярности Ask', 'популярности Desc', 'цене Ask', 'цене Desc', 'алфавиту Asc', 'алфавиту Desc'];
   let nameSort = sorts[sortNumber];
 
   const onChoiceSort = (index) => {
     //setSortNumber(index);
     setTumblerSort(false);
-    onSortClick(index)
+    dispatch(changeParamSort(index))
+    //onSortClick(index)
   }
 
 

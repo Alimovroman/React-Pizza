@@ -1,15 +1,21 @@
 .root {
   margin-right: 290px;
 
-  img {
+  .searchImg {
     width: 23px;
-    position: absolute;
+    position: relative;
+    left: 23px;
+    top: 7px;
     opacity: 0.5;
   }
 
   .delete {
+    width: 23px;
     opacity: 0.5;
     cursor: pointer;
+    position: relative;
+    right: 27px;
+    top: 7px;
 
     &:hover {
       opacity: 0.8;
