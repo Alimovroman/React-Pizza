@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
-
-const CHANGE_CATEGORY = 'pizzaBlockReducer/CHANGE_CATEGORY';
 
 const initialState = {
   pizzaCategory: 0,
@@ -10,7 +7,6 @@ const initialState = {
     sortParam: ['rating', 'rating&order=desc', 'price', 'price&order=desc', 'name', 'name&order=desc']
   },
   pageNumber: 1
-
 }
 
 export const pizzaState = createSlice({

@@ -10,7 +10,7 @@ import { SearchContext } from '../../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQueryParam, setPageNumber } from '../../../state/pizzaBlock-reducer';
 import qs from 'qs';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 
 const PizzaBlockContainer = (props) => {
@@ -40,14 +40,14 @@ const PizzaBlockContainer = (props) => {
   useEffect(() => {
     if (window.location.search) {
       let param = qs.parse((window.location.search.substring(1)));
-      dispatch(changeQueryParam(param))
+      dispatch(changeQueryParam(param));
       isFetching.current = true;     
     }
   }, [])
 
   useEffect(() => {
     if (!isFetching.current){
-      filterFetch()
+      filterFetch();
     };   
     window.scrollTo(0, 0);
     isFetching.current = false;
@@ -62,7 +62,7 @@ const PizzaBlockContainer = (props) => {
       })
       navigate(`?${queryString}`);
     }
-    isMounted.current = true
+    isMounted.current = true;
     
     //setSearchParams({pizzaCategory, pageNumber, sortNumber})
   }, [ pizzaCategory, pageNumber, sortNumber])

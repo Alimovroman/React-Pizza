@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeParamSort } from "../../state/pizzaBlock-reducer";
-
 
 const Sort = ({sortNumber}) => {
   const [tumblerSort, setTumblerSort] = useState(false);
   const dispatch = useDispatch();
-  //const sorts = ['популярности', 'цене', 'алфавиту'];
   const sorts = ['популярности Ask', 'популярности Desc', 'цене Ask', 'цене Desc', 'алфавиту Asc', 'алфавиту Desc'];
   let nameSort = sorts[sortNumber];
+  const sortRef = useRef();
 
   const onChoiceSort = (index) => {
     //setSortNumber(index);
@@ -17,9 +16,17 @@ const Sort = ({sortNumber}) => {
     //onSortClick(index)
   }
 
-
+  useEffect(() => {
+    function handlePopupOfClick(event) {
+      if (!event.path.includes(sortRef.current)) {
+        setTumblerSort(false)
+      }
+    }
+     document.body.addEventListener('click', handlePopupOfClick);
+     return () => document.body.removeEventListener('click', handlePopupOfClick);
+  }, [])
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
