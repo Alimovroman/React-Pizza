@@ -1,0 +1,30 @@
+import { useDispatch } from "react-redux";
+import { changeCategory } from "../../state/main-reducer";
+import React from "react";
+
+type CategoriesProps = { // так типизируем Функциоанльные компоненты React.FC, если без FC то можно ({a} :{a:sting})
+  activeCategory: number
+}
+
+const Categories: React.FC <CategoriesProps> = ({ activeCategory }) => {
+  const dispatch = useDispatch();
+  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  const onActiveCategories = (num: number) => {
+    //alert(num)
+    //onCategoryClick(num)
+    dispatch(changeCategory(num))
+  }
+  return (
+    <div className="categories">
+      <ul>
+        {categories.map((e, i) => {
+          return (
+            <li key={i} onClick={() => onActiveCategories(i)} className={activeCategory === i ? "active" : ''} >{e}</li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+};
+
+export default Categories;
