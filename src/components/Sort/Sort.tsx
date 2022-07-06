@@ -6,8 +6,11 @@ import React from "react";
 // type M = MouseEvent & {
 //   path: Node[];
 // }
+type SortProps = {
+  sortNumber: number
+}
 
-const Sort = ({sortNumber}: {sortNumber:number}) => {
+const Sort: React.FC<SortProps> = React.memo(({ sortNumber }) => {
   const [tumblerSort, setTumblerSort] = useState(false);
   const dispatch = useDispatch();
   const sorts = ['популярности Ask', 'популярности Desc', 'цене Ask', 'цене Desc', 'алфавиту Asc', 'алфавиту Desc'];
@@ -24,14 +27,14 @@ const Sort = ({sortNumber}: {sortNumber:number}) => {
   useEffect(() => {
     function handlePopupOfClick(event: MouseEvent) {
       if (!event.composedPath().includes(sortRef.current!)) {
-      //if (!event.path.includes(sortRef.current!)) {
+        //if (!event.path.includes(sortRef.current!)) {
         setTumblerSort(false)
       }
     }
-     document.body.addEventListener('click', handlePopupOfClick);
-     return () => document.body.removeEventListener('click', handlePopupOfClick);
+    document.body.addEventListener('click', handlePopupOfClick);
+    return () => document.body.removeEventListener('click', handlePopupOfClick);
   }, [])
-  
+
   return (
     <div ref={sortRef} className="sort">
       <div className="sort__label">
@@ -55,9 +58,9 @@ const Sort = ({sortNumber}: {sortNumber:number}) => {
           {sorts.map((e, i) => <li key={i} onClick={() => onChoiceSort(i)} className={sortNumber === i ? "active" : ''} >{e}</li>)}
         </ul>
       </div>}
-    
+
     </div>
   )
-};
+})
 
 export default Sort;

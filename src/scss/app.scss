@@ -222,7 +222,23 @@ body {
             display: none;
           }
         }
+        &--disabled {
+          opacity: 0.3;
+          &:active {
+            transform: none;
+          }
+          &:hover {
+            cursor:not-allowed;
+            background: #fff;
+
+            svg path {
+              fill: #fe5f1e;
+            }
+          }
+        }
       }
+
+ 
 
       b {
         font-size: 22px;

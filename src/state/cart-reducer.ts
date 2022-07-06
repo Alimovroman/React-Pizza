@@ -27,6 +27,12 @@ const cartReducer = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+
+    addCartItemsLocalStorage: (state, action: PayloadAction<{totalPrice:number, counterAddPizzas:number, items:ItemsProps[]}>) => {
+      state.totalPrice = action.payload.totalPrice;
+      state.counterAddPizzas = action.payload.counterAddPizzas;
+      state.items = action.payload.items;
+    },
     showingTotalPrice: (state, action: PayloadAction<{
       id: number, name: string, price: number, imageUrl: string, size: number, type: string,
     }>) => {
@@ -70,5 +76,5 @@ export const totalPriceSelector = (state: RootState) => state.cart.totalPrice;
 export const itemsSelector = (state: RootState) => state.cart.items;
 export const counterAddPizzasSelector = (state: RootState) => state.cart.counterAddPizzas
 
-export const { showingTotalPrice, clearCart, deleteItem, incrementCount, decrementCount } = cartReducer.actions;
+export const { showingTotalPrice, clearCart, deleteItem, incrementCount, decrementCount, addCartItemsLocalStorage } = cartReducer.actions;
 export default cartReducer.reducer;

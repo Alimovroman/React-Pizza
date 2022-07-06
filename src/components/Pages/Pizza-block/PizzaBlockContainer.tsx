@@ -1,7 +1,7 @@
 import Categories from '../../Categories/Categories';
 import PizzaBlock from './Pizza-block';
 import Sort from '../../Sort/Sort';
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SkeletonLoader from '../../../assets/SkeletonReact/SkeletonReact';
 import Paginate from '../../Paginate/Paginate';
 import { useDispatch, useSelector } from 'react-redux';

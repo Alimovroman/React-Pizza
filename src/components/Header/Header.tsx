@@ -1,13 +1,32 @@
 import pizzaLogo from '../../assets/img/pizza-logo.svg';
 import { Link, useLocation } from "react-router-dom";
 import Search from './Search/Search';
-import { useSelector } from 'react-redux';
-import { cartSelector } from '../../state/cart-reducer';
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartItemsLocalStorage, cartSelector } from '../../state/cart-reducer';
+import React, { useEffect, useRef } from 'react';
+import { AppDispatch } from '../../state/store';
+import { compileString } from 'sass';
 
 const Header: React.FC = () => {
-  const { totalPrice, counterAddPizzas } = useSelector(cartSelector);
+  const { totalPrice, counterAddPizzas, items } = useSelector(cartSelector);
   const location = useLocation();
+  const isMounted = useRef(false);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    let obj = { totalPrice, counterAddPizzas, items };
+
+    if (isMounted.current) {
+      const json = JSON.stringify(obj)
+      localStorage.setItem('cartItems', json);
+    }
+    isMounted.current = true
+  }, [counterAddPizzas])
+
+  useEffect(() => {
+    const localStoreObj = JSON.parse(localStorage.getItem('cartItems')!)
+    dispatch(addCartItemsLocalStorage(localStoreObj))
+  }, [])
 
   return (
     <div className="header">
@@ -21,7 +40,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         </Link>
-        <Search />
+        {location.pathname !== '/cart' && <Search />}
         <div className="header__cart">
           {location.pathname !== '/cart' && // реакт не знает что нужно отрендарить
             <Link to="/cart" className="button button--cart">
