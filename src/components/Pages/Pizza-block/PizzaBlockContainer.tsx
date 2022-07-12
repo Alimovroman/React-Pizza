@@ -32,7 +32,6 @@ const PizzaBlockContainer: React.FC = () => {
     let pagination = `page=${pageNumber}&limit=4`;
     let category = pizzaCategory === 0 ? '' : `category=${pizzaCategory}`;
     let sortBy = `sortBy=${sortParam[sortNumber]}`;
-    console.log(isLoad) // Удалить в будущем
     setIsLoad(false)
     
       //let response = await axios.get(`https://62a5c5ab430ba53411cc40f9.mockapi.io/items?${category}&${search}&${sortBy}&${pagination}`)

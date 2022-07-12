@@ -40,7 +40,6 @@ export const getFullPizza = createAsyncThunk(
   `fullPizza/getFullPizza`,
   async (id: string) => {
     let response = await axios.get(`https://62a5c5ab430ba53411cc40f9.mockapi.io/items?id=${id}`)
-    console.log( response.data)
     return (response.data) as PizzaType[]
   }
 );
