@@ -25,7 +25,9 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const localStoreObj = JSON.parse(localStorage.getItem('cartItems')!)
-    dispatch(addCartItemsLocalStorage(localStoreObj))
+    if(localStoreObj) {
+      dispatch(addCartItemsLocalStorage(localStoreObj))
+    }
   }, [])
 
   return (
